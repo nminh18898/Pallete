@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/parentLayout"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/vibrant"
+            android:text="Vibrant"
+            android:textColor="#FFFFFF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="5dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/vibrantDark"
+            android:text="vibrantDark"
+            android:textColor="#FFFFFF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="5dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/vibrantLight"
+            android:text="vibrantLight"
+            android:textColor="#FFFFFF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="5dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/muted"
+            android:text="Muted"
+            android:textColor="#FFFFFF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="5dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/mutedDark"
+            android:text="Muted Dark"
+            android:textColor="#FFFFFF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="5dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/mutedLight"
+            android:text="Muted Light"
+            android:textColor="#FFFFFF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="5dp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dominant"
+            android:text="Dominant"
+            android:textColor="#FFFFFF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="5dp">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/neutral"
+            android:text="neutral"
+            android:textColor="#FFFFFF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="5dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/customDominant"
+            android:text="CDominant"
+            android:textColor="#FFFFFF"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="5dp">
+        </TextView>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvImageList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

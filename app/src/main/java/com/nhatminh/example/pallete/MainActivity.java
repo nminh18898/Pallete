@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -89,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
                 .addTarget(NEUTRAL).generate(new Palette.PaletteAsyncListener() {
                     @Override
                     public void onGenerated(@Nullable Palette p) {
+
+                        findGradientDominantColors(p.getSwatches());
+
                         Palette.Swatch vibrantSwatch = p.getVibrantSwatch();
                         Palette.Swatch mutedSwatch = p.getMutedSwatch();
 
@@ -149,6 +155,36 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private GradientDrawable findGradientDominantColors(List<Palette.Swatch> allSwatches){
+        List<Palette.Swatch> swatches = new ArrayList<>();
+
+        for(int i=0; i<allSwatches.size();i++){
+            swatches.add(allSwatches.get(i));
+        }
+
+        Collections.sort(swatches, new SwatchComparator());
+
+        GradientDrawable gd = new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM,
+                new int[] {swatches.get(0).getRgb(),swatches.get(1).getRgb()});
+        gd.setCornerRadius(0f);
+
+        return gd;
+    }
+
+    private int findBlendDominantColors(List<Palette.Swatch> allSwatches){
+        List<Palette.Swatch> swatches = new ArrayList<>();
+
+        for(int i=0; i<allSwatches.size();i++){
+            swatches.add(allSwatches.get(i));
+        }
+
+        Collections.sort(swatches, new SwatchComparator());
+
+        return interpolateColor(swatches.get(0).getRgb(), swatches.get(1).getRgb(),
+                swatches.get(0).getPopulation() / swatches.get(1).getPopulation());
     }
 
 
@@ -230,6 +266,14 @@ public class MainActivity extends AppCompatActivity {
         float alpha_output = interpolate(alpha_a, alpha_b, proportion);
 
         return Color.HSVToColor((int) alpha_output, hsv_output);
+    }
+
+    private class SwatchComparator implements Comparator<Palette.Swatch>{
+
+        @Override
+        public int compare(Palette.Swatch o1, Palette.Swatch o2) {
+            return o2.getPopulation() - o1.getPopulation();
+        }
     }
 
     private void createData(){
